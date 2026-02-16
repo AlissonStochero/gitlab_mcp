@@ -57,6 +57,36 @@ Se nenhum header for encontrado, o servidor tenta usar a variável de ambiente `
    - Base: `http://localhost:5282/`
    - MCP: `http://localhost:5282/api/mcp`
 
+## Rodar com Docker
+
+### Desenvolvimento (Hot Reload)
+Para desenvolver com hot reload habilitado, use o Docker Compose. Isso montará o diretório atual dentro do container e reiniciará a aplicação a cada mudança de arquivo.
+
+1. Configure o `.env` (opcional) ou exporte as variáveis de ambiente baseadas no `docker-compose.yml`.
+2. Execute:
+   ```bash
+   docker-compose up --build
+   ```
+   A aplicação estará disponível em `http://localhost:8080/api/mcp`.
+
+### Produção / Deploy
+Para construir uma imagem otimizada e pronta para produção:
+
+1. Build da imagem:
+   ```bash
+   docker build -t gitlab-mcp .
+   ```
+2. Executar o container:
+   ```bash
+   docker run -d -p 8080:8080 \
+     -e MCP_SERVER_API_KEY="sua_chave_segura" \
+     -e GITLAB_URL="https://gitlab.com" \
+     --name gitlab-mcp-server \
+     gitlab-mcp
+   ```
+   *Nota: O Token do GitLab deve ser enviado pelo cliente (ex: VS Code, Claude) via header `X-GitLab-Token`.*
+
+
 ## Configurar Clientes MCP
 
 ### VS Code (Extensão MCP)

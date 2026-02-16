@@ -1,0 +1,27 @@
+services:
+  gitlab-mcp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: build # Usamos o estágio de build (SDK) para desenvolvimento para ter acesso ao 'dotnet watch'
+    container_name: gitlab-mcp
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8080
+      # Substitua ou configure estas variáveis no seu arquivo .env ou no sistema
+      # - GITLAB_TOKEN=${GITLAB_TOKEN} # Opcional: Fallback apenas. Recomendado enviar via header X-GitLab-Token no cliente.
+      - GITLAB_URL=${GITLAB_URL:-https://gitlab.com}
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/src # Monta o diretório atual para dentro do container em /src para hot reload
+      - /src/src/GitLabMcp.Presentation.Http/bin # Evita sobrescrever binários locais
+      - /src/src/GitLabMcp.Presentation.Http/obj # Evita sobrescrever objetos locais
+    working_dir: /src/src/GitLabMcp.Presentation.Http
+    command: [ "dotnet", "watch", "run", "--non-interactive", "--urls", "http://0.0.0.0:8080" ]
+    networks:
+      - mcp-network
+
+networks:
+  mcp-network:
+    driver: bridge
