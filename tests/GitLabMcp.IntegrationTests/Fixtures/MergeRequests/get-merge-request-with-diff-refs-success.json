@@ -1,0 +1,7 @@
+﻿{
+  "diff_refs": {
+    "base_sha": "base123",
+    "start_sha": "start123",
+    "head_sha": "head123"
+  }
+}

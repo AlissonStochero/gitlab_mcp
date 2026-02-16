@@ -1,0 +1,20 @@
+﻿{
+  "changes": [
+    {
+      "old_path": "src/old.cs",
+      "new_path": "src/new.cs",
+      "diff": "@@ -1 +1 @@\n-old\n+new",
+      "new_file": false,
+      "deleted_file": false,
+      "renamed_file": false
+    },
+    {
+      "old_path": "README.md",
+      "new_path": "README.md",
+      "diff": "@@ -1 +1 @@\n-a\n+b",
+      "new_file": false,
+      "deleted_file": false,
+      "renamed_file": false
+    }
+  ]
+}
