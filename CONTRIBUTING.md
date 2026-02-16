@@ -1,21 +1,29 @@
 # Contribuindo para o GitLab MCP
 
-Obrigado pelo interesse em contribuir com o GitLab MCP! Estamos felizes em tê-lo conosco.
+# Contribuindo para o GitLab MCP
 
-## Como Contribuir
+Este é um projeto **Open Source** e você é livre para usá-lo, estudá-lo e modificá-lo!
 
-1.  Faça um Fork do projeto.
-2.  Crie uma Branch para sua Feature (`git checkout -b feature/AmazingFeature`).
-3.  Faça o Commit de suas mudanças (`git commit -m 'Add some AmazingFeature'`).
-4.  Faça o Push para a Branch (`git push origin feature/AmazingFeature`).
-5.  Abra um Pull Request.
+## Política de Contribuição
+
+Ficamos felizes com o seu interesse em contribuir! Gostaríamos de alinhar algumas expectativas:
+
+### Pull Requests
+
+Você é bem-vindo para abrir Pull Requests, porém, devido à disponibilidade limitada para manutenção:
+-   **O tempo de revisão pode variar:** Agradecemos sua paciência caso a análise do seu PR demore um pouco mais que o esperado.
+-   **Prioridade:** Correções de bugs críticos e melhorias na estabilidade tendem a ser revisados primeiro.
+
+### Quando fazer um Fork?
+
+Se você precisa de uma funcionalidade **urgente**, ou se perceber que nossa capacidade de revisão não está acompanhando a demanda, sinta-se totalmente à vontade para criar um **Fork** do projeto e seguir com suas próprias modificações. Encorajamos isso para garantir que você não fique bloqueado!
 
 ## Relatando Bugs
 
-Se você encontrar um bug, por favor abra uma Issue detalhando o problema, passos para reproduzir e ambiente utilizado.
+Se encontrar problemas, sinta-se à vontade para abrir uma Issue para documentar o bug, isso ajuda outros usuários que possam ter o mesmo problema. Se possível, forneça detalhes de como reproduzir.
 
 ## Padrões de Código
 
+Ao trabalhar em seu Fork (ou se decidir enviar um PR):
 -   Siga as convenções de código C# padrão.
--   Mantenha o código limpo e legível.
--   Adicione testes unitários para novas funcionalidades sempre que possível.
+-   Mantenha a solução compilável e os testes passando.
