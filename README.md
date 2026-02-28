@@ -130,6 +130,20 @@ Configuração do servidor MCP:
 }
 ```
 
+### Google Antigravity
+Configuração do servidor MCP:
+```json
+"gitlab-mcp": {
+      "type": "streamable-http",
+      "serverUrl": "http://localhost:5282/api/mcp",
+      "headers": {
+        "Authorization": "Bearer bearer-token-explicito",
+        "X-GitLab-Token": "Token-explicito"
+      }
+    }
+```
+> **Nota:** É necessário colocar os tokens explicitamente (sem usar variáveis de ambiente como `${env:GITLAB_TOKEN}`), pois o Antigravity possui incompatibilidade com variáveis de ambiente no momento.
+
 ## Ferramentas Disponíveis
 
 ### Projetos
