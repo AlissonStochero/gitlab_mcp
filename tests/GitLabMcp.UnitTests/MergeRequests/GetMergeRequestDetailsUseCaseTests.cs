@@ -37,22 +37,22 @@ public class GetMergeRequestDetailsUseCaseTests
         var projectId = 10;
         var mrIid = 5;
         var expectedMr = new MergeRequestDetails(
-            mrIid, 
-            "Title", 
-            "opened", 
-            "Author", 
-            DateTimeOffset.UtcNow, 
-            DateTimeOffset.UtcNow, 
-            null, 
-            "p://url", 
-            "Description", 
-            "source", 
-            "target", 
-            false, 
-            false, 
-            "can_be_merged", 
-            Array.Empty<string>(), 
-            Array.Empty<string>(), 
+            mrIid,
+            "Title",
+            "opened",
+            "Author",
+            DateTimeOffset.UtcNow,
+            DateTimeOffset.UtcNow,
+            null,
+            "p://url",
+            "Description",
+            "source",
+            "target",
+            false,
+            false,
+            "can_be_merged",
+            Array.Empty<string>(),
+            Array.Empty<string>(),
             Array.Empty<string>());
 
         _client.GetMergeRequestDetailsAsync(Arg.Any<int>(), Arg.Any<int>(), Arg.Any<CancellationToken>())

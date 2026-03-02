@@ -37,7 +37,7 @@ public class GetProjectsUseCaseTests
         var search = "test-project";
         var visibility = "public";
         var expectedProjects = new List<GitLabProject>();
-        
+
         _client.GetProjectsAsync(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<CancellationToken>())
             .Returns(expectedProjects);
 
