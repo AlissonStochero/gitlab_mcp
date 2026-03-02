@@ -1,55 +1,60 @@
 # GitLab MCP (.NET)
 
+[![Build Status](https://github.com/AlissonStochero/gitlab_mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/AlissonStochero/gitlab_mcp/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 > [!NOTE]
-> **Nota sobre Contribuições**: Agradecemos o interesse em contribuir! Note que as revisões de Pull Requests podem levar algum tempo devido à disponibilidade limitada. Consulte o [Guia de Contribuição](CONTRIBUTING.md) para mais detalhes e sobre quando considerar um fork.
+> **Portuguese Version**: This project has a [Portuguese README (Leia-me em Português)](README.pt-br.md).
 
+> [!NOTE]
+> **Contribution Note**: We appreciate your interest in contributing! Please note that Pull Request reviews may take some time due to limited availability. Check the [Contributing Guide](CONTRIBUTING.md) for more details and when to consider a fork.
 
-Servidor MCP para GitLab usando transporte HTTP streamable, com ferramentas equivalentes ao script Python do repositório original.
+MCP (Model Context Protocol) server for GitLab using streamable HTTP transport, providing tools equivalent to the Python script from the original reference repository.
 
-## Recursos
-- MCP HTTP streamable em `/api/mcp`
-- Ferramentas para projetos, merge requests e issues
-- Aliases para compatibilidade (list/get/add legacy)
-- Autenticação por `MCP_SERVER_API_KEY` (Bearer ou `X-API-Key`)
-- Arquitetura em camadas (Domain/Application/Infrastructure/Presentation)
+## Features
+- Streamable HTTP MCP at `/api/mcp`
+- Tools for projects, merge requests, and issues
+- Compatibility aliases (legacy list/get/add)
+- Authentication via `MCP_SERVER_API_KEY` (Bearer or `X-API-Key`)
+- Layered Architecture (Domain/Application/Infrastructure/Presentation)
 
-## Requisitos
+## Requirements
 - .NET SDK 9.0 (target `net9.0`)
-- Token do GitLab (PAT) com acesso aos projetos desejados
+- GitLab Personal Access Token (PAT) with access to the target projects
 
-## Configuração
+## Configuration
 
-### Variáveis de Ambiente
+### Environment Variables
 
-| Variável | Descrição |
-|----------|-----------|
-| `MCP_SERVER_API_KEY` | Chave de API única para autenticar clientes MCP. |
-| `MCP_SERVER_API_KEYS` | Lista de chaves permitidas (separadas por `,` ou `;`). Útil para múltiplos clientes. |
-| `GITLAB_TOKEN` | Token de Acesso Pessoal (PAT) do GitLab. Usado como **fallback** se o cliente não enviar o header `X-GitLab-Token`. |
-| `GITLAB_URL` | URL da instância do GitLab (padrão: `https://gitlab.com`). |
+| Variable | Description |
+|----------|-------------|
+| `MCP_SERVER_API_KEY` | Unique API key to authenticate MCP clients. |
+| `MCP_SERVER_API_KEYS` | List of allowed keys (separated by `,` or `;`). Useful for multiple clients. |
+| `GITLAB_TOKEN` | GitLab Personal Access Token (PAT). Used as a **fallback** if the client does not send the `X-GitLab-Token` header. |
+| `GITLAB_URL` | GitLab instance URL (default: `https://gitlab.com`). |
 
 > [!NOTE]
-> Se nenhuma chave MCP (`MCP_SERVER_API_KEY` ou `MCP_SERVER_API_KEYS`) for configurada, o servidor aceitará requisições **sem autenticação**. Isso gera um aviso no log e é recomendado apenas para desenvolvimento local.
+> If no MCP key (`MCP_SERVER_API_KEY` or `MCP_SERVER_API_KEYS`) is configured, the server will accept requests **without authentication**. This generates a warning in the logs and is recommended only for local development.
 
-### Autenticação do GitLab
+### GitLab Authentication
 
-O servidor prioriza o token enviado pelo cliente MCP nos headers da requisição.
-Headers suportados (em ordem de prioridade):
+The server prioritizes the token sent by the MCP client in the request headers.
+Supported headers (in order of priority):
 1. `X-GitLab-Token`
 2. `X-GitLab-Private-Token`
 3. `PRIVATE-TOKEN`
 
-Se nenhum header for encontrado, o servidor tenta usar a variável de ambiente `GITLAB_TOKEN`.
+If no header is found, the server attempts to use the `GITLAB_TOKEN` environment variable.
 
-## Rodar localmente
+## Running Locally
 
-1. Defina as variáveis (exemplo PowerShell):
+1. Set the variables (PowerShell example):
    ```powershell
-   $env:GITLAB_TOKEN="seu_token_gitlab"
-   $env:MCP_SERVER_API_KEY="sua_chave_secreta"
+   $env:GITLAB_TOKEN="your_gitlab_token"
+   $env:MCP_SERVER_API_KEY="your_secret_key"
    ```
 
-2. Inicie o servidor:
+2. Start the server:
    ```powershell
    dotnet run --project src/GitLabMcp.Presentation.Http --launch-profile http
    ```
@@ -57,40 +62,40 @@ Se nenhum header for encontrado, o servidor tenta usar a variável de ambiente `
    - Base: `http://localhost:5282/`
    - MCP: `http://localhost:5282/api/mcp`
 
-## Rodar com Docker
+## Running with Docker
 
-### Desenvolvimento (Hot Reload)
-Para desenvolver com hot reload habilitado, use o Docker Compose. Isso montará o diretório atual dentro do container e reiniciará a aplicação a cada mudança de arquivo.
+### Development (Hot Reload)
+To develop with hot reload enabled, use Docker Compose. This will mount the current directory inside the container and restart the application upon any file change.
 
-1. Configure o `.env` (opcional) ou exporte as variáveis de ambiente baseadas no `docker-compose.yml`.
-2. Execute:
+1. Configure the `.env` file (optional) or export the environment variables based on `docker-compose.yml`.
+2. Run:
    ```bash
    docker-compose up --build
    ```
-   A aplicação estará disponível em `http://localhost:8080/api/mcp`.
+   The application will be available at `http://localhost:8080/api/mcp`.
 
-### Produção / Deploy
-Para construir uma imagem otimizada e pronta para produção:
+### Production / Deployment
+To build an optimized, production-ready image:
 
-1. Build da imagem:
+1. Build the image:
    ```bash
    docker build -t gitlab-mcp .
    ```
-2. Executar o container:
+2. Run the container:
    ```bash
    docker run -d -p 8080:8080 \
-     -e MCP_SERVER_API_KEY="sua_chave_segura" \
+     -e MCP_SERVER_API_KEY="your_secure_key" \
      -e GITLAB_URL="https://gitlab.com" \
      --name gitlab-mcp-server \
      gitlab-mcp
    ```
-   *Nota: O Token do GitLab deve ser enviado pelo cliente (ex: VS Code, Claude) via header `X-GitLab-Token`.*
+   *Note: The GitLab Token must be sent by the client (e.g., VS Code, Claude) via the `X-GitLab-Token` header.*
 
 
-## Configurar Clientes MCP
+## Configuring MCP Clients
 
-### VS Code (Extensão MCP)
-Arquivo `.vscode/mcp.json`:
+### VS Code (MCP Extension)
+File `.vscode/mcp.json`:
 ```json
 {
   "servers": {
@@ -107,7 +112,7 @@ Arquivo `.vscode/mcp.json`:
 ```
 
 ### Codex CLI
-Arquivo `~/.codex/config.toml`:
+File `~/.codex/config.toml`:
 ```toml
 [mcp_servers.gitlab]
 bearer_token_env_var = "MCP_SERVER_API_KEY"
@@ -118,7 +123,7 @@ X-GitLab-Token = "GITLAB_TOKEN"
 ```
 
 ### GitHub Copilot
-Configuração do servidor MCP:
+MCP server configuration:
 ```json
 "gitlab-mcp": {
     "type": "http",
@@ -131,72 +136,72 @@ Configuração do servidor MCP:
 ```
 
 ### Google Antigravity
-Configuração do servidor MCP:
+MCP server configuration:
 ```json
 "gitlab-mcp": {
       "type": "streamable-http",
       "serverUrl": "http://localhost:5282/api/mcp",
       "headers": {
-        "Authorization": "Bearer bearer-token-explicito",
-        "X-GitLab-Token": "Token-explicito"
+        "Authorization": "Bearer explicit-bearer-token",
+        "X-GitLab-Token": "explicit-gitlab-token"
       }
     }
 ```
-> **Nota:** É necessário colocar os tokens explicitamente (sem usar variáveis de ambiente como `${env:GITLAB_TOKEN}`), pois o Antigravity possui incompatibilidade com variáveis de ambiente no momento.
+> **Note:** It is necessary to place the tokens explicitly (without using environment variables like `${env:GITLAB_TOKEN}`) because Antigravity currently has incompatibility with environment variables.
 
-## Ferramentas Disponíveis
+## Available Tools
 
-### Projetos
-| Ferramenta | Descrição | Argumentos |
-|------------|-----------|------------|
-| `get_projects` | Obtém lista de projetos acessíveis. | `search` (opcional): Filtro por nome.<br>`visibility` (padrão: "private"): public, internal, private. |
+### Projects
+| Tool | Description | Arguments |
+|------|-------------|-----------|
+| `get_projects` | Gets a list of accessible projects. | `search` (optional): Filter by name.<br>`visibility` (default: "private"): public, internal, private. |
 
 ### Merge Requests
-| Ferramenta | Descrição | Argumentos |
-|------------|-----------|------------|
-| `list_open_merge_requests` | Lista MRs abertos num projeto. | `project_id`: ID do projeto.<br>`state` (padrão: "opened"): opened, merged, closed. |
-| `get_merge_request_details` | Detalhes completos de um MR. | `project_id`, `mr_iid` (Internal ID do MR). |
-| `get_merge_request_comments` | Lista comentários (notas) de um MR. | `project_id`, `mr_iid`. |
-| `add_merge_request_comment` | Adiciona comentário geral ao MR. | `project_id`, `mr_iid`, `comment`. |
-| `add_merge_request_diff_comment` | Comenta numa linha específica do diff. | `project_id`, `mr_iid`, `comment`<br>`file_path`: Caminho do arquivo.<br>`line_number`: Linha.<br>`line_type` (padrão: "new"): "new" ou "old". |
-| `get_merge_request_diff` | Obtém o diff (mudanças) do MR. | `project_id`, `mr_iid`. |
-| `set_merge_request_title` | Altera o título do MR. | `project_id`, `mr_iid`, `title`. |
-| `set_merge_request_description` | Altera a descrição do MR. | `project_id`, `mr_iid`, `description`. |
-| `approve_merge_request` | Aprova o MR. | `project_id`, `mr_iid`. |
+| Tool | Description | Arguments |
+|------|-------------|-----------|
+| `list_open_merge_requests` | Lists open MRs in a project. | `project_id`: Project ID.<br>`state` (default: "opened"): opened, merged, closed. |
+| `get_merge_request_details` | Full details of an MR. | `project_id`, `mr_iid` (MR Internal ID). |
+| `get_merge_request_comments` | Lists comments (notes) from an MR. | `project_id`, `mr_iid`. |
+| `add_merge_request_comment` | Adds a general comment to the MR. | `project_id`, `mr_iid`, `comment`. |
+| `add_merge_request_diff_comment` | Comments on a specific diff line. | `project_id`, `mr_iid`, `comment`<br>`file_path`: File path.<br>`line_number`: Line number.<br>`line_type` (default: "new"): "new" or "old". |
+| `get_merge_request_diff` | Gets the diff (changes) of the MR. | `project_id`, `mr_iid`. |
+| `set_merge_request_title` | Changes the MR title. | `project_id`, `mr_iid`, `title`. |
+| `set_merge_request_description` | Changes the MR description. | `project_id`, `mr_iid`, `description`. |
+| `approve_merge_request` | Approves the MR. | `project_id`, `mr_iid`. |
 
 ### Issues
-| Ferramenta | Descrição | Argumentos |
-|------------|-----------|------------|
-| `get_issue_details` | Detalhes de uma issue. | `project_id`, `issue_iid`. |
+| Tool | Description | Arguments |
+|------|-------------|-----------|
+| `get_issue_details` | Details of a single issue. | `project_id`, `issue_iid`. |
 
-### Aliases (Compatibilidade)
-Estes aliases existem para manter compatibilidade com outras versões ou ferramentas existentes:
+### Aliases (Compatibility)
+These aliases exist to maintain compatibility with other versions or existing tools:
 
 - `list_merge_requests` → `list_open_merge_requests`
 - `get_merge_request` → `get_merge_request_details`
 - `get_merge_request_diffs` → `get_merge_request_diff`
 - `add_comment` → `add_merge_request_comment`
 
-## Estrutura do Projeto
+## Project Structure
 ```
 src/
-  GitLabMcp.Domain/          # Entidades e Interfaces
-  GitLabMcp.Application/     # Casos de Uso (Lógica)
-  GitLabMcp.Infrastructure/  # Implementação do Cliente GitLab e Auth
-  GitLabMcp.Presentation.Http/ # API Asp.Net Core (Endpoints MCP)
+  GitLabMcp.Domain/          # Entities and Interfaces
+  GitLabMcp.Application/     # Use Cases (Logic)
+  GitLabMcp.Infrastructure/  # GitLab Client Implementation and Auth
+  GitLabMcp.Presentation.Http/ # Asp.Net Core API (MCP Endpoints)
 tests/
   GitLabMcp.UnitTests/
   GitLabMcp.IntegrationTests/
 ```
 
-## Desenvolvimento e Testes
+## Development and Testing
 
 Build:
 ```bash
 dotnet build GitLabMcp.sln
 ```
 
-Testes:
+Tests:
 ```bash
 dotnet test GitLabMcp.sln
 ```
