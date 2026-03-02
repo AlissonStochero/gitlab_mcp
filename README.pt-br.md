@@ -1,5 +1,9 @@
 # GitLab MCP (.NET)
 
+[![Build Status](https://github.com/AlissonStochero/gitlab_mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/AlissonStochero/gitlab_mcp/actions/workflows/ci.yml)
+[![Code Coverage](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/AlissonStochero/gitlab_mcp/main/coverage/badge.json)](https://github.com/AlissonStochero/gitlab_mcp/actions)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 > [!NOTE]
 > **Nota sobre Contribuições**: Agradecemos o interesse em contribuir! Note que as revisões de Pull Requests podem levar algum tempo devido à disponibilidade limitada. Consulte o [Guia de Contribuição](CONTRIBUTING.md) para mais detalhes e sobre quando considerar um fork.
 
