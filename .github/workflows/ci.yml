@@ -17,9 +17,20 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 9.0.x
+    - name: Verify Formatting
+      run: dotnet format GitLabMcp.sln --verify-no-changes
     - name: Restore dependencies
       run: dotnet restore GitLabMcp.sln
     - name: Build
       run: dotnet build GitLabMcp.sln --no-restore
     - name: Test
-      run: dotnet test GitLabMcp.sln --no-build --verbosity normal
+      run: dotnet test GitLabMcp.sln --no-build --verbosity normal --collect:"XPlat Code Coverage" --results-directory ./coverage
+    - name: Code Coverage Report
+      uses: irongut/CodeCoverageSummary@v1.3.0
+      with:
+        filename: coverage/**/coverage.cobertura.xml
+        badge: true
+        format: markdown
+        output: both
+    - name: Write to Job Summary
+      run: cat code-coverage-results.md >> $GITHUB_STEP_SUMMARY
