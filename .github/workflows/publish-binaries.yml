@@ -1,0 +1,71 @@
+name: Release Binaries
+
+on:
+  push:
+    tags:
+      - 'v*.*.*' # Trigger em tags de versão como v1.0.0
+
+jobs:
+  release:
+    name: Build & Release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Necessário para o GITHUB_TOKEN criar a release
+
+    strategy:
+      matrix:
+        # Configurar compilação cruzada para as plataformas mais comuns
+        include:
+          - os: win-x64
+            ext: .exe
+            asset_name: gitlab-mcp-windows-x64
+          - os: linux-x64
+            ext: ''
+            asset_name: gitlab-mcp-linux-x64
+          - os: osx-x64
+            ext: ''
+            asset_name: gitlab-mcp-macos-x64
+          - os: osx-arm64
+            ext: ''
+            asset_name: gitlab-mcp-macos-arm64
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 9.0.x
+
+    - name: Publish for ${{ matrix.os }}
+      run: |
+        dotnet publish src/GitLabMcp.Presentation.Http/GitLabMcp.Presentation.Http.csproj \
+          -c Release \
+          -r ${{ matrix.os }} \
+          --self-contained true \
+          -p:PublishSingleFile=true \
+          -p:EnableCompressionInSingleFile=true \
+          -o ./publish/${{ matrix.os }}
+
+    - name: Zip the output (Windows)
+      if: matrix.os == 'win-x64'
+      run: |
+        cd publish/${{ matrix.os }}
+        zip -r ../../${{ matrix.asset_name }}.zip .
+
+    - name: Tar the output (Linux/Mac)
+      if: matrix.os != 'win-x64'
+      run: |
+        cd publish/${{ matrix.os }}
+        tar -czvf ../../${{ matrix.asset_name }}.tar.gz .
+
+    - name: Upload Release Assets
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          ${{ matrix.asset_name }}.zip
+          ${{ matrix.asset_name }}.tar.gz
+        generate_release_notes: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
