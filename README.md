@@ -3,6 +3,10 @@
 [![Build Status](https://github.com/AlissonStochero/gitlab_mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/AlissonStochero/gitlab_mcp/actions/workflows/ci.yml)
 [![Code Coverage](https://codecov.io/gh/AlissonStochero/gitlab_mcp/graph/badge.svg?token=12af9862-3fdd-4745-8c53-e6c15a0d2493)](https://codecov.io/gh/AlissonStochero/gitlab_mcp)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+> [!WARNING]
+> **Temporary Security Note**: Before making this repository public, please remove the `?token=YOUR_TOKEN` parameter from the Code Coverage badge URL above to prevent unauthorized access. Once public, Codecov will generate the badge without needing a token.
+
 > [!NOTE]
 > **Portuguese Version**: This project has a [Portuguese README (Leia-me em Português)](README.pt-br.md).
 
