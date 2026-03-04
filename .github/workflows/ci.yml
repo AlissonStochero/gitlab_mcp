@@ -25,12 +25,8 @@ jobs:
       run: dotnet build GitLabMcp.sln --no-restore
     - name: Test
       run: dotnet test GitLabMcp.sln --no-build --verbosity normal --collect:"XPlat Code Coverage" --results-directory ./coverage
-    - name: Code Coverage Report
-      uses: irongut/CodeCoverageSummary@v1.3.0
+    - name: Upload coverage reports to Codecov
+      uses: codecov/codecov-action@v5
       with:
-        filename: coverage/**/coverage.cobertura.xml
-        badge: true
-        format: markdown
-        output: both
-    - name: Write to Job Summary
-      run: cat code-coverage-results.md >> $GITHUB_STEP_SUMMARY
+        token: ${{ secrets.CODECOV_TOKEN }}
+        slug: AlissonStochero/gitlab_mcp

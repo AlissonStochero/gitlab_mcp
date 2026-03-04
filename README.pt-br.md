@@ -1,8 +1,11 @@
 # GitLab MCP (.NET)
 
 [![Build Status](https://github.com/AlissonStochero/gitlab_mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/AlissonStochero/gitlab_mcp/actions/workflows/ci.yml)
-[![Code Coverage](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/AlissonStochero/gitlab_mcp/main/coverage/badge.json)](https://github.com/AlissonStochero/gitlab_mcp/actions)
+[![Code Coverage](https://codecov.io/gh/AlissonStochero/gitlab_mcp/graph/badge.svg?token=12af9862-3fdd-4745-8c53-e6c15a0d2493)](https://codecov.io/gh/AlissonStochero/gitlab_mcp)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+> [!WARNING]
+> **Lembrete de Segurança**: Antes de tornar este repositório público, remova o parâmetro `?token=YOUR_TOKEN` da URL do badge de Cobertura de Código acima. Assim que o repositório for público, o Codecov exibirá a imagem automaticamente sem risco de vazar seu token de upload.
 
 > [!NOTE]
 > **Nota sobre Contribuições**: Agradecemos o interesse em contribuir! Note que as revisões de Pull Requests podem levar algum tempo devido à disponibilidade limitada. Consulte o [Guia de Contribuição](CONTRIBUTING.md) para mais detalhes e sobre quando considerar um fork.
