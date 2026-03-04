@@ -1,7 +1,7 @@
 # GitLab MCP (.NET)
 
 [![Build Status](https://github.com/AlissonStochero/gitlab_mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/AlissonStochero/gitlab_mcp/actions/workflows/ci.yml)
-[![Code Coverage](https://codecov.io/gh/AlissonStochero/gitlab_mcp/graph/badge.svg?token=12af9862-3fdd-4745-8c53-e6c15a0d2493)](https://codecov.io/gh/AlissonStochero/gitlab_mcp)
+[![Code Coverage](https://codecov.io/gh/AlissonStochero/gitlab_mcp/graph/badge.svg?token=I9CBRT9V9I)](https://codecov.io/gh/AlissonStochero/gitlab_mcp)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 > [!WARNING]
