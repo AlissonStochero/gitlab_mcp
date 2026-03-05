@@ -1,19 +1,19 @@
-# Código de Conduta
+# Contributor Covenant Code of Conduct
 
-## Nosso Compromisso
+## Our Pledge
 
-No interesse de promover um ambiente aberto e acolhedor, nós, como contribuidores e mantenedores, nos comprometemos a fazer da participação em nosso projeto e em nossa comunidade uma experiência livre de assédio para todos, independentemente da idade, tamanho corporal, deficiência, etnia, características sexuais, identidade e expressão de gênero, nível de experiência, educação, status socioeconômico, nacionalidade, aparência pessoal, raça, religião ou identidade e orientação sexual.
+In the interest of fostering an open and welcoming environment, we as contributors and maintainers pledge to make participation in our project and our community a harassment-free experience for everyone, regardless of age, body size, disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, religion, or sexual identity and orientation.
 
-## Nossos Padrões
+## Our Standards
 
-Exemplos de comportamento que contribuem para criar um ambiente positivo incluem:
+Examples of behavior that contributes to creating a positive environment include:
 
-*   Uso de linguagem acolhedora e inclusiva
-*   Respeito aos diferentes pontos de vista e experiências
-*   Aceitação graciosa de críticas construtivas
-*   Foco no que é melhor para a comunidade
-*   Demonstração de empatia com outros membros da comunidade
+*   Using welcoming and inclusive language
+*   Being respectful of differing viewpoints and experiences
+*   Gracefully accepting constructive criticism
+*   Focusing on what is best for the community
+*   Showing empathy towards other community members
 
-## Aplicação
+## Enforcement
 
-Instâncias de comportamento abusivo, de assédio ou inaceitável podem ser relatadas entrando em contato com a equipe do projeto. Todas as reclamações serão revisadas e investigadas e resultarão em uma resposta considerada necessária e apropriada às circunstâncias.
+Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by **opening an issue on GitHub** or, if privacy is required, by contacting the project team at as.arquiteturasolucoes@gmail.com. All complaints will be reviewed and investigated and will result in a response that is deemed necessary and appropriate to the circumstances.

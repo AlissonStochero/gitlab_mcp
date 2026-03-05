@@ -1,18 +1,18 @@
-# Política de Segurança
+# Security Policy
 
-## Versões Suportadas
+## Supported Versions
 
-Apenas a versão mais recente e estável do GitLab MCP recebe atualizações de segurança.
+Only the most recent and stable version of GitLab MCP receives security updates.
 
-| Versão | Suportada          |
+| Version | Supported          |
 | ------- | ------------------ |
 | 1.0.x   | :white_check_mark: |
 | < 1.0   | :x:                |
 
-## Relatando uma Vulnerabilidade
+## Reporting a Vulnerability
 
-Se você descobrir uma vulnerabilidade de segurança neste projeto, por favor envie um e-mail para [seu-email@exemplo.com] (substitua pelo seu contato) ou abra um _draft security advisory_ se estiver no GitHub.
+If you discover a security vulnerability within this project, please **prefer to open a _draft security advisory_ directly on GitHub**. If that is not possible, you may send an e-mail to as.arquiteturasolucoes@gmail.com.
 
-**Não divulgue vulnerabilidades publicamente antes de conversar com os mantenedores.**
+**Please do not disclose vulnerabilities publicly before discussing them with the maintainers.**
 
-Agradecemos o seu esforço em tornar este projeto mais seguro!
+We appreciate your efforts in making this project safer!
