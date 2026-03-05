@@ -11,7 +11,7 @@
 > **Nota sobre Contribuições**: Agradecemos o interesse em contribuir! Note que as revisões de Pull Requests podem levar algum tempo devido à disponibilidade limitada. Consulte o [Guia de Contribuição](CONTRIBUTING.md) para mais detalhes e sobre quando considerar um fork.
 
 
-Servidor MCP para GitLab usando transporte HTTP streamable, com ferramentas equivalentes ao script Python do repositório original.
+Servidor MCP para GitLab usando transporte HTTP streamable.
 
 ## Recursos
 - MCP HTTP streamable em `/api/mcp`

@@ -13,7 +13,7 @@
 > [!NOTE]
 > **Contribution Note**: We appreciate your interest in contributing! Please note that Pull Request reviews may take some time due to limited availability. Check the [Contributing Guide](CONTRIBUTING.md) for more details and when to consider a fork.
 
-MCP (Model Context Protocol) server for GitLab using streamable HTTP transport, providing tools equivalent to the Python script from the original reference repository.
+MCP (Model Context Protocol) server for GitLab using streamable HTTP transport.
 
 ## Features
 - Streamable HTTP MCP at `/api/mcp`
