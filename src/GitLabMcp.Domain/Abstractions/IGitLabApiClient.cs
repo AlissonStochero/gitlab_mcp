@@ -18,4 +18,5 @@ public interface IGitLabApiClient
     Task SetMergeRequestTitleAsync(int projectId, int mergeRequestIid, string title, CancellationToken cancellationToken);
     Task SetMergeRequestDescriptionAsync(int projectId, int mergeRequestIid, string description, CancellationToken cancellationToken);
     Task ApproveMergeRequestAsync(int projectId, int mergeRequestIid, CancellationToken cancellationToken);
+    Task UnapproveMergeRequestAsync(int projectId, int mergeRequestIid, CancellationToken cancellationToken);
 }

@@ -20,6 +20,7 @@ public static class DependencyInjection
         services.AddTransient<SetMergeRequestTitleUseCase>();
         services.AddTransient<SetMergeRequestDescriptionUseCase>();
         services.AddTransient<ApproveMergeRequestUseCase>();
+        services.AddTransient<UnapproveMergeRequestUseCase>();
         return services;
     }
 }

@@ -7,6 +7,7 @@ using GitLabMcp.Application.UseCases.Issues;
 using GitLabMcp.Application.UseCases.MergeRequests;
 using GitLabMcp.Application.UseCases.Projects;
 using GitLabMcp.Domain.Entities;
+using GitLabMcp.Domain.Errors;
 using ModelContextProtocol.Server;
 
 namespace GitLabMcp.Presentation.Http.Mcp;
@@ -25,6 +26,7 @@ public sealed class GitLabTools
     private readonly SetMergeRequestTitleUseCase _setMergeRequestTitle;
     private readonly SetMergeRequestDescriptionUseCase _setMergeRequestDescription;
     private readonly ApproveMergeRequestUseCase _approveMergeRequest;
+    private readonly UnapproveMergeRequestUseCase _unapproveMergeRequest;
 
     public GitLabTools(
         GetProjectsUseCase getProjects,
@@ -37,7 +39,8 @@ public sealed class GitLabTools
         GetIssueDetailsUseCase getIssueDetails,
         SetMergeRequestTitleUseCase setMergeRequestTitle,
         SetMergeRequestDescriptionUseCase setMergeRequestDescription,
-        ApproveMergeRequestUseCase approveMergeRequest)
+        ApproveMergeRequestUseCase approveMergeRequest,
+        UnapproveMergeRequestUseCase unapproveMergeRequest)
     {
         _getProjects = getProjects;
         _listOpenMergeRequests = listOpenMergeRequests;
@@ -50,6 +53,7 @@ public sealed class GitLabTools
         _setMergeRequestTitle = setMergeRequestTitle;
         _setMergeRequestDescription = setMergeRequestDescription;
         _approveMergeRequest = approveMergeRequest;
+        _unapproveMergeRequest = unapproveMergeRequest;
     }
 
     [McpServerTool, Description("Obtem uma lista de projetos do GitLab acessiveis com o token configurado.")]
@@ -232,6 +236,24 @@ public sealed class GitLabTools
     {
         await _approveMergeRequest.ExecuteAsync(project_id, mr_iid);
         return $"Merge Request #{mr_iid} aprovado com sucesso.";
+    }
+
+    [McpServerTool, Description("Revoga a aprovacao de uma merge request. O usuario autenticado deve ter aprovado o MR previamente.")]
+    public async Task<string> unapprove_merge_request(
+        [Description("ID do projeto GitLab.")] int project_id,
+        [Description("IID da merge request.")] int mr_iid)
+    {
+        try
+        {
+            await _unapproveMergeRequest.ExecuteAsync(project_id, mr_iid);
+            return $"Aprovacao do Merge Request #{mr_iid} revogada com sucesso.";
+        }
+        catch (GitLabApiException ex) when (ex.StatusCode == 404)
+        {
+            return $"Nao foi possivel revogar a aprovacao do MR #{mr_iid}. " +
+                   "Verifique se o usuario autenticado ja aprovou este merge request, " +
+                   "se o project_id e mr_iid estao corretos, e se o projeto tem aprovacoes habilitadas.";
+        }
     }
 
     [McpServerTool, Description("Alias de list_open_merge_requests.")]

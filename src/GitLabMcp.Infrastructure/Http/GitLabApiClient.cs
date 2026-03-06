@@ -250,6 +250,16 @@ public sealed class GitLabApiClient : IGitLabApiClient
         await EnsureSuccessAsync(response, cancellationToken);
     }
 
+    public async Task UnapproveMergeRequestAsync(
+        int projectId,
+        int mergeRequestIid,
+        CancellationToken cancellationToken)
+    {
+        var url = $"api/v4/projects/{projectId}/merge_requests/{mergeRequestIid}/unapprove";
+        var response = await SendAsync(HttpMethod.Post, url, cancellationToken);
+        await EnsureSuccessAsync(response, cancellationToken);
+    }
+
     private async Task<MergeRequestDiffRefsDto> GetMergeRequestDiffRefsAsync(
         int projectId,
         int mergeRequestIid,
