@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-03-06
+
+### Added
+- `unapprove_merge_request` MCP tool to revoke merge request approvals via GitLab API.
+
 ## [0.1.0] - 2026-03-05
 
 ### Added
