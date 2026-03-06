@@ -1,11 +1,9 @@
 # GitLab MCP (.NET)
 
 [![Build Status](https://github.com/AlissonStochero/gitlab_mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/AlissonStochero/gitlab_mcp/actions/workflows/ci.yml)
-[![Code Coverage](https://codecov.io/gh/AlissonStochero/gitlab_mcp/graph/badge.svg?token=I9CBRT9V9I)](https://codecov.io/gh/AlissonStochero/gitlab_mcp)
+[![Code Coverage](https://codecov.io/gh/AlissonStochero/gitlab_mcp/graph/badge.svg)](https://codecov.io/gh/AlissonStochero/gitlab_mcp)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-> [!WARNING]
-> **Temporary Security Note**: Before making this repository public, please remove the `?token=YOUR_TOKEN` parameter from the Code Coverage badge URL above to prevent unauthorized access. Once public, Codecov will generate the badge without needing a token.
 
 > [!NOTE]
 > **Portuguese Version**: This project has a [Portuguese README (Leia-me em Português)](README.pt-br.md).

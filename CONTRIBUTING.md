@@ -1,7 +1,5 @@
 # Contribuindo para o GitLab MCP
 
-# Contribuindo para o GitLab MCP
-
 Este é um projeto **Open Source** e você é livre para usá-lo, estudá-lo e modificá-lo!
 
 ## Política de Contribuição
