@@ -64,6 +64,19 @@ Se nenhum header for encontrado, o servidor tenta usar a variável de ambiente `
 
 ## Rodar com Docker
 
+Repositório no Docker Hub: [alissonstocheroarq/gitlab-mcp](https://hub.docker.com/r/alissonstocheroarq/gitlab-mcp)
+Tag recomendada: `0.2.0` (versão fixa).
+
+Exemplo rápido (Docker Hub + versão `0.2.0`):
+```bash
+docker pull alissonstocheroarq/gitlab-mcp:0.2.0
+docker run -d -p 8080:8080 \
+  -e MCP_SERVER_API_KEY="sua_chave_segura" \
+  -e GITLAB_URL="https://gitlab.com" \
+  --name gitlab-mcp-server \
+  alissonstocheroarq/gitlab-mcp:0.2.0
+```
+
 ### Desenvolvimento (Hot Reload)
 Para desenvolver com hot reload habilitado, use o Docker Compose. Isso montará o diretório atual dentro do container e reiniciará a aplicação a cada mudança de arquivo.
 
@@ -75,19 +88,23 @@ Para desenvolver com hot reload habilitado, use o Docker Compose. Isso montará 
    A aplicação estará disponível em `http://localhost:8080/api/mcp`.
 
 ### Produção / Deploy
-Para construir uma imagem otimizada e pronta para produção:
+Para deploy com versão reproduzível, use a imagem publicada no Docker Hub (`0.2.0`):
 
-1. Build da imagem:
+1. Faça o pull da imagem:
    ```bash
-   docker build -t gitlab-mcp .
+   docker pull alissonstocheroarq/gitlab-mcp:0.2.0
    ```
 2. Executar o container:
    ```bash
    docker run -d -p 8080:8080 \
      -e MCP_SERVER_API_KEY="sua_chave_segura" \
      -e GITLAB_URL="https://gitlab.com" \
-     --name gitlab-mcp-server \
-     gitlab-mcp
+      --name gitlab-mcp-server \
+      alissonstocheroarq/gitlab-mcp:0.2.0
+   ```
+3. Opcional (build local com a mesma tag de versão):
+   ```bash
+   docker build -t gitlab-mcp:0.2.0 .
    ```
    *Nota: O Token do GitLab deve ser enviado pelo cliente (ex: VS Code, Claude) via header `X-GitLab-Token`.*
 
